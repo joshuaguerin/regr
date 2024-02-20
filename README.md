@@ -12,7 +12,10 @@ The two tools are [regr](./regr.py) and [bregr](./bregr.sh). The former handles 
 
 ### Input File Formats
 
-### regr - **reg**ular expression teste**r**
 
-### bregr - batch regular expression tester
+
+### regr - REGular expression testeR
+
+### bregr - Batch REGular expression testeR
+
 
