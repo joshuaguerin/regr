@@ -94,4 +94,34 @@ should generate:
 
 ### bregr - Batch REGular expression testeR
 
+`bregr.sh` is a bash script that automates the above workflow by:
+1. Finding all .re files that match a given prefix and
+2. Running those against a test file using regr.
+
+If a problem and its associated files begin with the prefix `1.a`, then it will pull all files with that prefix and the .re suffix for testing.
+
+Example use:
+```
+./bregr.sh test/1.a
+```
+
+should generate:
+```
+test/1.a.guerin.re (11)*
+** Accept 
+*0* Reject 
+*1* Reject 
+*01* Reject 
+*10* Reject 
+*11* Accept 
+*0100* Reject 
+*1001* Reject 
+*1111* Accept 
+*111110* Reject 
+*111111* Accept 
+*1001101* Accept (Reject)
+*11111111* Accept 
+```
+
+If more files were in the test directory containing the prefix `1.a` (for other students), `bregr` should process them all.
 
