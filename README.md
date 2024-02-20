@@ -45,9 +45,14 @@ Note that the second-to-last is deliberately *incorrect* for demonstration purpo
 
 This utility is designed to take a regular expression file as a command-line argument, and parses stdin for test cases until an end of text input is encountered (e.g., `ctrl+d`).
 
-E.g., The following is a sample interaction of the program with data from stdin:
+E.g., The following is a sample interaction of the program with data from stdin. The command:
 ```
-./regr.py ./test/1.a.guerin.re 
+./regr.py ./test/1.a.guerin.re
+```
+
+should generate:
+
+```
 ./test/1.a.guerin.re (11)*
  Reject
 ** Reject (Accept)
@@ -63,8 +68,14 @@ The first line of output consists of the file name and the contents, and each pa
 
 Since input is from standard in, `cat` and a pipe can be used to input file test data.
 
+The command:
 ```
 cat ./test/1.a.txt | ./regr.py ./test/1.a.guerin.re
+```
+
+should generate:
+
+```
 ./test/1.a.guerin.re (11)*
 ** Accept 
 *0* Reject 
