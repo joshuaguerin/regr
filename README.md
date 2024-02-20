@@ -12,7 +12,13 @@ The two tools are [regr](./regr.py) and [bregr](./bregr.sh). The former handles 
 
 ### Input File Formats
 
+## Regular Expressions
+Test files are designed for quick pattern matching in their names. E.g., problem 1.a, submission by Guerin would be [1.a.guerin.re](./test/1.a.guerin.re). Many such test files can be ran against a single test file (e.g., one for each student in a class for that problem).
 
+Each regular expression file (.re) should contain a single line consisting of a regular expression in plaintext format.
+
+## Test files
+A corresponding *test* to 1.a.name.re would be [1.a.txt](./test/1.a.txt). Several .re files can be ran against a single .txt file containing test cases.
 
 ### regr - REGular expression testeR
 
