@@ -20,7 +20,66 @@ Each regular expression file (.re) should contain a single line consisting of a 
 ## Test files
 A corresponding *test* to 1.a.name.re would be [1.a.txt](./test/1.a.txt). Several .re files can be ran against a single .txt file containing test cases.
 
+Each line of a test file should contain a string to be matched, and either the word `Accept` or `Reject` corresponding to acceptance of the string. There is no specific ordering requirement of lines, but I will often order them lexicographically for convenience.
+
+A sample test file could look like:
+```
+ Accept
+0 Reject
+1 Reject
+01 Reject
+10 Reject
+11 Accept
+0100 Reject
+1001 Reject
+1111 Accept
+111110 Reject
+111111 Accept
+1001101 Accept
+11111111 Accept
+```
+
+Note that the second-to-last is deliberately *incorrect* for demonstration purposes.
+
 ### regr - REGular expression testeR
+
+This utility is designed to take a regular expression file as a command-line argument, and parses stdin for test cases until an end of text input is encountered (e.g., `ctrl+d`).
+
+E.g., The following is a sample interaction of the program with data from stdin:
+```
+./regr.py ./test/1.a.guerin.re 
+./test/1.a.guerin.re (11)*
+ Reject
+** Reject (Accept)
+11 Accept
+*11* Accept 
+101 Reject
+*101* Reject 
+1101 Accept
+*1101* Accept (Reject)
+```
+
+The first line of output consists of the file name and the contents, and each pair of lines that result contain first the test case, then the result. In output, strings are surrounded by asterisks to make visual parsing easier (e.g., the empty string above is printed as \*\*). If the Accept/Reject matches expectation it is printed. If it fails to match expectations, the result also shows expected output.
+
+Since input is from standard in, `cat` and a pipe can be used to input file test data.
+
+```
+cat ./test/1.a.txt | ./regr.py ./test/1.a.guerin.re
+./test/1.a.guerin.re (11)*
+** Accept 
+*0* Reject 
+*1* Reject 
+*01* Reject 
+*10* Reject 
+*11* Accept 
+*0100* Reject 
+*1001* Reject 
+*1111* Accept 
+*111110* Reject 
+*111111* Accept 
+*1001101* Accept (Reject)
+*11111111* Accept 
+```
 
 ### bregr - Batch REGular expression testeR
 
