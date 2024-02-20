@@ -125,3 +125,9 @@ test/1.a.guerin.re (11)*
 
 If more files were in the test directory containing the prefix `1.a` (for other students), `bregr` should process them all.
 
+For testing purposes, `bregr` should provide the most convenience for the user.
+
+## Issues
+This is a pretty quick and dirty script. It is currently working well for its intended purpose, which is automating regular expression testing for homework assignments. Since it is matching patterns in names, student work can easily be pulled from repos and dumped into a single directory for testing purposes.
+
+If you discover any major issues that you wish to report, feel free to create an issue. Since things are currently working well enough to make my life easier I'm not certain if or how this repo will be updated.
