@@ -8,7 +8,7 @@ Input/output format are designed to correspond closely to those used by [JFLAP](
 
 ## Use
 
-The two tools are regr and bregr. The former handles a single regular expression and the second allows easy batch processing of one or more regular expressions (e.g., multiple submissions of a problem in an assignment).
+The two tools are [regr](./regr.py) and bregr. The former handles a single regular expression and the second allows easy batch processing of one or more regular expressions (e.g., multiple submissions of a problem in an assignment).
 
 ### regr.py
 
