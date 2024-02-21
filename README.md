@@ -41,7 +41,7 @@ A sample test file could look like:
 11111111 Accept
 ```
 
-### bregr - Batch REGular expression testeR
+## bregr - Batch REGular expression testeR
 
 `bregr.sh` is a bash script that automates the workflow by:
 1. Finding all .re files that match a given prefix and
@@ -79,7 +79,7 @@ If more files were in the test directory containing the prefix `1.a` (for other 
 For testing purposes, `bregr` should provide the most convenience for the user.
 
 
-### regr - REGular expression testeR
+## regr - REGular expression testeR
 
 This utility is designed to take a regular expression file as a command-line argument, and parses stdin for test cases until an end of text input is encountered (e.g., `ctrl+d`).
 
