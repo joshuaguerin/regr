@@ -10,6 +10,8 @@ Input/output format are designed to correspond closely to those used by [JFLAP](
 
 The two tools are [regr](./regr.py) and [bregr](./bregr.sh). The former handles a single regular expression and the second allows easy batch processing of one or more regular expressions (e.g., multiple submissions of a problem in an assignment).
 
+Note that `bregr` requires `regr`, so you must have *both* in the working directory for use.
+
 ### Input File Formats
 
 ## Regular Expressions
@@ -39,7 +41,43 @@ A sample test file could look like:
 11111111 Accept
 ```
 
-Note that the second-to-last is deliberately *incorrect* for demonstration purposes.
+### bregr - Batch REGular expression testeR
+
+`bregr.sh` is a bash script that automates the workflow by:
+1. Finding all .re files that match a given prefix and
+2. Running those against a test file using regr.
+
+This script is the easier of the two to use, and is likely a good starting point if you don't know which script fits your use case.
+
+If a problem and its associated files begin with the prefix `1.a`, then it will pull all files with that prefix and the .re suffix for testing.
+
+Example use:
+```
+./bregr.sh test/1.a
+```
+
+should generate:
+```
+test/1.a.guerin.re (11)*
+** Accept 
+*0* Reject 
+*1* Reject 
+*01* Reject 
+*10* Reject 
+*11* Accept 
+*0100* Reject 
+*1001* Reject 
+*1111* Accept 
+*111110* Reject 
+*111111* Accept 
+*1001101* Accept (Reject)
+*11111111* Accept 
+```
+
+If more files were in the test directory containing the prefix `1.a` (for other students), `bregr` should process them all.
+
+For testing purposes, `bregr` should provide the most convenience for the user.
+
 
 ### regr - REGular expression testeR
 
@@ -91,41 +129,6 @@ should generate:
 *1001101* Accept (Reject)
 *11111111* Accept 
 ```
-
-### bregr - Batch REGular expression testeR
-
-`bregr.sh` is a bash script that automates the above workflow by:
-1. Finding all .re files that match a given prefix and
-2. Running those against a test file using regr.
-
-If a problem and its associated files begin with the prefix `1.a`, then it will pull all files with that prefix and the .re suffix for testing.
-
-Example use:
-```
-./bregr.sh test/1.a
-```
-
-should generate:
-```
-test/1.a.guerin.re (11)*
-** Accept 
-*0* Reject 
-*1* Reject 
-*01* Reject 
-*10* Reject 
-*11* Accept 
-*0100* Reject 
-*1001* Reject 
-*1111* Accept 
-*111110* Reject 
-*111111* Accept 
-*1001101* Accept (Reject)
-*11111111* Accept 
-```
-
-If more files were in the test directory containing the prefix `1.a` (for other students), `bregr` should process them all.
-
-For testing purposes, `bregr` should provide the most convenience for the user.
 
 ## Issues
 This is a pretty quick and dirty script. It is currently working well for its intended purpose, which is automating regular expression testing for homework assignments. Since it is matching patterns in names, student work can easily be pulled from repos and dumped into a single directory for testing purposes.
